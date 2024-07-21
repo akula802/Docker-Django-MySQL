@@ -38,7 +38,8 @@ This folder is mounted to the 'app-db' container as a volume, and stores the MyS
 
 Get a shell in the webserver container and create the django superuser:
 
-> docker exec -it app-web bash  python /code/app/manage.py createsuperuser
+> docker exec -it app-web bash  
+> python /code/app/manage.py createsuperuser
 
 The website code is in the ./web/code directory, which gets mounted to the 'app-web' container at /code. Work with your templates, views, urls, etc. within there.
 
