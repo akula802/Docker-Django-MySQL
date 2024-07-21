@@ -1,0 +1,6 @@
+.git
+*/.git
+*/*/.git
+*.sw??
+node_modules
+venv/

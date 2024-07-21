@@ -1,0 +1,56 @@
+---
+#version: "3"
+name: django-mysql-webapp
+
+# Docker containers
+services:
+  web:
+    # Webserver container for the app
+    image: app/web
+    container_name: app-web 
+    build:
+      context: ./web
+      dockerfile: ./Dockerfile
+    #restart: always
+    volumes: 
+      - ./web/code:/code  
+    networks:
+      app_net:
+        ipv4_address: 10.3.150.2
+    ports:
+      - "8000:8000"
+    # This command waits 10s for the database initialize, then connects and runs the Django server
+    command: bash -c "sleep 10 && python /code/app/manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+
+  db:
+    # MySQL database container for the app
+    image: app/db
+    container_name: app-db
+    build:
+      context: ./db
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./db/mysql:/var/lib/mysql
+    # These pull from a '.env' file in the same directory (see sample.env)
+    # The .gitignore prevents .env files from being committed
+    environment:
+        MYSQL_ROOT_USER: "${MYSQL_ROOT_USER}" 
+        MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+        MYSQL_DATABASE: "${MYSQL_DATABASE}"
+        MYSQL_USER: "${MYSQL_USER}"
+        MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    networks:
+      app_net:
+        ipv4_address: 10.3.150.3
+
+# Docker networks
+networks:
+  app_net:
+    ipam:
+      #driver: bridge
+      config:
+        - subnet: "10.3.150.0/24"
+          gateway: "10.3.150.1"
+...
