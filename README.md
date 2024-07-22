@@ -7,7 +7,7 @@ This repo enables one to bring up two containers with docker compose: a web serv
 
 ### PREREQUISITES
 
-You must have _Docker_ and _docker compose_ installed in order for this to work.
+You must have _Docker_ and _docker-compose_ installed in order for this to work.
 
 
 ### IINITIAL SETUP INSTRUCTIONS
@@ -47,7 +47,7 @@ Get a shell in the webserver container and create the django superuser:
 
 You should now be able to log in to Django's admin portal at http://localhost:8000/admin
 
-The website code is in the ./web/code directory, which gets mounted to the 'app-web' container at /code. Work with your templates, views, urls, etc. within there.
+The website code is in the ./web/code directory, which gets mounted to the 'app-web' container at /code. Work with your templates, views, urls, etc. within the local ./web/code directory.
 
 Lastly, just tweak the .env files and settings.py as you see fit, and get to building your website.
 
