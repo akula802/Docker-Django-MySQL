@@ -29,6 +29,8 @@ Make sure the containers are running with:
 
 There should be two containers, one called 'app-web' and the other called 'app-db.' The web server waits 10 seconds before starting the Django webserver, so as to let the MySQL database(s) initialize.
 
+At this point, you should be able to browse the new website at http://localhost:8000 
+
 Note that a new directory will be created:
 
 + ./db/mysql
@@ -42,6 +44,8 @@ Get a shell in the webserver container and create the django superuser:
 
 > docker exec -it app-web bash  
 > python /code/app/manage.py createsuperuser
+
+You should now be able to log in to Django's admin portal at http://localhost:8000/admin
 
 The website code is in the ./web/code directory, which gets mounted to the 'app-web' container at /code. Work with your templates, views, urls, etc. within there.
 
