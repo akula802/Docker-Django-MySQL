@@ -17,6 +17,8 @@ You must have _Docker_ and _docker compose_ installed in order for this to work.
 + Create another _.env_ file at ./web/code/app/app where the settings.py file is.
 + Populate both .env files with your secrets and other parameters. See the _sample.env_ at each location for reference.
 
+_Note: The .env files are untracked via the .gitignore file._
+
 Make sure you're still in the project root directory. Build the images and run the containers with:
 
 > docker compose up -d --build
@@ -27,11 +29,11 @@ Make sure the containers are running with:
 
 There should be two containers, one called 'app-web' and the other called 'app-db.' The web server waits 10 seconds before starting the Django webserver, so as to let the MySQL database(s) initialize.
 
-Note that a new folder will be created:
+Note that a new directory will be created:
 
 + ./db/mysql
 
-This folder is mounted to the 'app-db' container as a volume, and stores the MySQL database files.
+This directory is mounted to the 'app-db' container as a volume, and stores the MySQL database files. It is untracked via the .gitignore file.
 
 
 ### NEXT STEPS - DJANGO
