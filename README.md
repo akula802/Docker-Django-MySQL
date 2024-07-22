@@ -33,7 +33,7 @@ Note that a new directory will be created:
 
 + ./db/mysql
 
-This directory is mounted to the 'app-db' container as a volume, and stores the MySQL database files. It is untracked via the .gitignore file.
+This directory is mounted to the 'app-db' container as a volume (at /var/lib/mysql), and stores the MySQL database files. It is untracked via the .gitignore file.
 
 
 ### NEXT STEPS - DJANGO
